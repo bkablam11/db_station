@@ -1,0 +1,26 @@
+command_idcredit_particulier = (credit_particulier_id INT, date_credit VARCHAR(50), date_echeance VARCHAR(50), montant_credit VARCHAR(50));
+gerant = (gerant_id INT, prenom_gerant VARCHAR(255), nom_gerant VARCHAR(255), adresse_gerant VARCHAR(255), telephone_gerant VARCHAR(255), mail_gerant VARCHAR(255), login VARCHAR(50), password VARCHAR(50));
+direction = (direction_id INT, nom_direction VARCHAR(50));
+client_entreprise = (client_entreprise_id VARCHAR(50), nom_compagnie VARCHAR(50), nom_client_entreprise VARCHAR(50), souscription_compagnie VARCHAR(50), status_compagnie VARCHAR(50));
+remboursement_entreprise = (remboursement_entreprise_id INT, montant_rembourser DOUBLE, date_remboursement DATE, #client_entreprise_id);
+credit_entreprise = (credit_entreprise_id INT, date_credit DATE, montant_depenser VARCHAR(50), solde_restant VARCHAR(50), #client_entreprise_id);
+station = (station_id INT, nom_station VARCHAR(255), adresse_station VARCHAR(255), telephone_station VARCHAR(255), objectif INT, besoin INT, #gerant_id, #direction_id);
+vente = (releve_de_vente_id INT, _date DATE, tpe_vente DOUBLE, espece_vente DOUBLE, #gerant_id);
+produit = (produit_id INT, nom VARCHAR(255), prix DECIMAL(15,2));
+cuve = (cuve_id INT, capacite DECIMAL(15,2), #station_id, #produit_id);
+pompe = (pompe_id INT, libeller VARCHAR(255), status VARCHAR(255), index_depart DECIMAL(15,2), index_fin DECIMAL(15,2), #produit_id);
+banque = (banque_id INT, nom_banque VARCHAR(50), localisation_bank VARCHAR(50));
+commande = (command_id INT, date_commande VARCHAR(50), quantite_commandee DECIMAL(15,2), type_produit VARCHAR(50), reference_produit VARCHAR(50), #direction_id, #gerant_id);
+camion = (camion_id INT, nom_camion VARCHAR(50), prenom_camion VARCHAR(50), quantite_camion DECIMAL(15,2));
+chauffeur = (chauffeur_id INT);
+client_particulier = (client_particulier_id INT, nom_client VARCHAR(50), prenom_client VARCHAR(50), telephone_client VARCHAR(50), status_client LOGICAL, #credit_particulier_id, #gerant_id);
+pompiste = (pompiste__id INT, prenom_pompiste VARCHAR(255), nom_pompiste VARCHAR(255), adresse_pompiste VARCHAR(255), telephone_pompiste VARCHAR(25), id_user INT, #releve_de_vente_id, #pompe_id);
+livraison = (produit_id INT, borderaux_livraison VARCHAR(50), date_livraison DATE, reference_produit_livrer VARCHAR(50), #chauffeur_id, #command_id, #station_id, #direction_id);
+remboursement_particulier = (remboursement_particulier_id INT, montant_pris VARCHAR(50), montant_rembourser VARCHAR(50), date_rembousement DATE, #credit_particulier_id, #client_particulier_id);
+concerner_stock = (#releve_de_vente_id, #cuve_id, stock_super DECIMAL(15,2), stock_gazoil DECIMAL(15,2));
+gerer3 = (#direction_id, #client_entreprise_id);
+occasionner = (#remboursement_entreprise_id, #credit_entreprise_id);
+versement1 = (#gerant_id, #station_id, #banque_id, date_versement DATE, montant_versement VARCHAR(50));
+avoir_servir = (#produit_id, #camion_id, quantite_livree DECIMAL(15,2));
+concerner5 = (#produit_id, #produit_id_1);
+
